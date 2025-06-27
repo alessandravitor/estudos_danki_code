@@ -1,5 +1,6 @@
 package br.com.estudos.dankicode.pizzariadankicode.domain;
 
+import br.com.estudos.dankicode.pizzariadankicode.domain.constante.CategoriaEnum;
 import br.com.estudos.dankicode.pizzariadankicode.domain.constante.SaborEnum;
 import br.com.estudos.dankicode.pizzariadankicode.domain.constante.TamnhoEnum;
 import jakarta.persistence.*;
@@ -24,5 +25,7 @@ public class Pizza {
     private SaborEnum sabor;
     @Enumerated(EnumType.STRING)
     private TamnhoEnum tamanho;
+    @Enumerated(EnumType.STRING)
+    private CategoriaEnum categoria;
 
 }

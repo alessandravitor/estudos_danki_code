@@ -1,0 +1,1 @@
+ALTER TABLE pizza ADD categoria VARCHAR(20) NOT NULL;

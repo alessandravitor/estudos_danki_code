@@ -44,4 +44,14 @@ public class PizzaService {
         repository.save(pizza);
         return mapper.map(pizza, PizzaResponse.class);
     }
+
+    public void atualizarDisponibilidade(Long id) {
+        var pizzaOptional = repository.findById(id);
+        if(pizzaOptional.isPresent()) {
+            var pizza = pizzaOptional.get();
+            pizza.setDisponivel(!pizza.isDisponivel());
+            repository.save(pizza);
+        }
+
+    }
 }

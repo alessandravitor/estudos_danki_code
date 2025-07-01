@@ -1,6 +1,8 @@
-# Postas da Aplicacao
+# Configuracoes da Aplicacao
 server:
   port: 8080
+  error:
+    include-stacktrace: never
 
 spring:
 

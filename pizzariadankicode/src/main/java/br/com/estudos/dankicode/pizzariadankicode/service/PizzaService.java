@@ -4,19 +4,18 @@ import br.com.estudos.dankicode.pizzariadankicode.domain.Pizza;
 import br.com.estudos.dankicode.pizzariadankicode.domain.dto.PizzaRequest;
 import br.com.estudos.dankicode.pizzariadankicode.domain.dto.PizzaResponse;
 import br.com.estudos.dankicode.pizzariadankicode.repository.PizzaRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
+@RequiredArgsConstructor
 public class PizzaService {
 
-    @Autowired
-    private PizzaRepository repository;
-    @Autowired
-    private ModelMapper mapper;
+    private final PizzaRepository repository;
+    private final ModelMapper mapper;
 
     public PizzaResponse criar(PizzaRequest request) {
         var pizza = mapper.map(request, Pizza.class);
@@ -24,9 +23,8 @@ public class PizzaService {
         return mapper.map(pizza, PizzaResponse.class);
     }
 
-    public List<PizzaResponse> listar() {
-        var pizzas = repository.findAll();
-        return pizzas.stream().map(p -> mapper.map(p, PizzaResponse.class)).toList();
+    public Page<PizzaResponse> listar(Pageable paginacao) {
+        return repository.findAll(paginacao).map(p -> mapper.map(p, PizzaResponse.class));
     }
 
     public PizzaResponse buscar(Long id) {
@@ -52,6 +50,5 @@ public class PizzaService {
             pizza.setDisponivel(!pizza.isDisponivel());
             repository.save(pizza);
         }
-
     }
 }

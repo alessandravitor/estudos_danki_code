@@ -23,7 +23,7 @@ public class UserController {
     private final UserService service;
 
     @PostMapping
-    public ResponseEntity<UsuarioResponse> criar(@RequestBody @Valid UsuarioRequest request, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<UsuarioResponse> cadastrar(@RequestBody @Valid UsuarioRequest request, UriComponentsBuilder uriBuilder) {
         var user = service.criar(request);
         return ResponseEntity.created(uriBuilder.path("usuarios/{id}").buildAndExpand(user.getId()).toUri())
                 .body(user);

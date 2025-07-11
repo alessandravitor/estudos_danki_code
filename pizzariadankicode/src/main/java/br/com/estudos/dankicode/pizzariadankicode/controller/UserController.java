@@ -3,6 +3,8 @@ package br.com.estudos.dankicode.pizzariadankicode.controller;
 import br.com.estudos.dankicode.pizzariadankicode.domain.dto.UsuarioRequest;
 import br.com.estudos.dankicode.pizzariadankicode.domain.dto.UsuarioResponse;
 import br.com.estudos.dankicode.pizzariadankicode.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/usuarios")
+@SecurityRequirement(name = "bearer-key")
 public class UserController {
 
     private final UserService service;

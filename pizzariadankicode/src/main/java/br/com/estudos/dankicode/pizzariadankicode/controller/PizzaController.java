@@ -3,6 +3,8 @@ package br.com.estudos.dankicode.pizzariadankicode.controller;
 import br.com.estudos.dankicode.pizzariadankicode.domain.dto.PizzaRequest;
 import br.com.estudos.dankicode.pizzariadankicode.domain.dto.PizzaResponse;
 import br.com.estudos.dankicode.pizzariadankicode.service.PizzaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/pizzas")
+@SecurityRequirement(name = "bearer-key")
 public class PizzaController {
 
     private final PizzaService service;
